@@ -201,33 +201,49 @@ const Perhitungan = () => {
     await UmurCount();
     await HitungPendapatan();
     await JumlahTanggungan();
+    let BANTUAN = "";
     if (muda > 0 && rendah > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (muda > 0 && sedang > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (tua > 0 && rendah > 0 && sedikit > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (tua > 0 && rendah > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (tua > 0 && sedang > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && rendah > 0 && sedikit > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && rendah > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && sedang > 0 && sedikit > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && sedang > 0 && sedikit > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && sedang > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && tinggi > 0 && sedikit > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else if (lansia > 0 && tinggi > 0 && banyak > 0) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
+      BANTUAN = "Dapat Bantuan";
     } else {
       setState((pre) => ({ ...pre, bantuan: "Tidak Dapat Bantuan" }));
+      BANTUAN = "Tidak Dapat Bantuan";
     }
+
+    return { BANTUAN };
   };
 
   const onSave = async () => {
@@ -254,7 +270,7 @@ const Perhitungan = () => {
       .doc(`data-penduduk/${state.nik}`)
       .update({
         ...state,
-        bantuan: state.bantuan,
+        bantuan: (await counts()).BANTUAN,
         umur_kepala_keluarga: {
           muda: (await UmurCount()).MUDA,
           tua: (await UmurCount()).TUA,

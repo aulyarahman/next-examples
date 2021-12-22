@@ -1,4 +1,12 @@
-import { Box, Button, Center, Input, VStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Input,
+  VStack,
+  Text,
+  Heading,
+} from "@chakra-ui/react";
 import Router from "next/router";
 import React, { useState } from "react";
 import { auth } from "../config/firebase";
@@ -22,7 +30,17 @@ const Login = () => {
 
   return (
     <Box bg="#12B2B3" h={"100vh"}>
-      <Center>
+      <VStack spacing={10}>
+        <Heading
+          w={600}
+          textAlign={"center"}
+          mt={"10vh"}
+          color={"white"}
+          textTransform={"capitalize"}
+        >
+          Sistem pendukung keputusan penerima bantuan kartu keluarga sejahtera
+          (KKS)
+        </Heading>
         <VStack
           mt={"30vh"}
           align={"stretch"}
@@ -68,7 +86,7 @@ const Login = () => {
             Login
           </Button>
         </VStack>
-      </Center>
+      </VStack>
     </Box>
   );
 };

@@ -202,40 +202,88 @@ const Perhitungan = () => {
     await HitungPendapatan();
     await JumlahTanggungan();
     let BANTUAN = "";
-    if (muda > 0 && rendah > 0 && banyak > 0) {
+    if (
+      (await UmurCount()).MUDA > 0 &&
+      (await HitungPendapatan()).RENDAH > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (muda > 0 && sedang > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).MUDA > 0 &&
+      (await HitungPendapatan()).SEDANG > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (tua > 0 && rendah > 0 && sedikit > 0) {
+    } else if (
+      (await UmurCount()).TUA > 0 &&
+      (await HitungPendapatan()).RENDAH > 0 &&
+      (await JumlahTanggungan()).SEDIKIT > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (tua > 0 && rendah > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).TUA > 0 &&
+      (await HitungPendapatan()).RENDAH > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (tua > 0 && sedang > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).TUA > 0 &&
+      (await HitungPendapatan()).SEDANG > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && rendah > 0 && sedikit > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).RENDAH > 0 &&
+      (await JumlahTanggungan()).SEDIKIT > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && rendah > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).RENDAH > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && sedang > 0 && sedikit > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).SEDANG > 0 &&
+      (await JumlahTanggungan()).SEDIKIT > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && sedang > 0 && sedikit > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).SEDANG > 0 &&
+      (await JumlahTanggungan()).SEDIKIT > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && sedang > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).SEDANG > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && tinggi > 0 && sedikit > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).TINGGI > 0 &&
+      (await JumlahTanggungan()).SEDIKIT > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
-    } else if (lansia > 0 && tinggi > 0 && banyak > 0) {
+    } else if (
+      (await UmurCount()).LANSIA > 0 &&
+      (await HitungPendapatan()).TINGGI > 0 &&
+      (await JumlahTanggungan()).BANYAK > 0
+    ) {
       setState((pre) => ({ ...pre, bantuan: "Dapat Bantuan" }));
       BANTUAN = "Dapat Bantuan";
     } else {

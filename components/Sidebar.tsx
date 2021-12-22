@@ -10,10 +10,18 @@ import {
   DrawerContent,
   IconButton,
   Text,
+  Avatar,
+  HStack,
+  Spacer,
+  VStack,
+  Button,
+  Center,
+  Divider,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import router from "next/router";
-import { FiMenu, FiHome, FiPlus, FiList } from "react-icons/fi";
+import { FiMenu, FiHome, FiPlus, FiClipboard } from "react-icons/fi";
+import { auth } from "../config/firebase";
 
 interface SidebarContentProps {
   children: ReactNode;
@@ -32,18 +40,19 @@ export default function SidebarContents(props: SidebarContentProps) {
         pl="4"
         py="3"
         cursor="pointer"
-        color={useColorModeValue("inherit", "gray.400")}
+        color={"gray.50"}
         _hover={{
           bg: useColorModeValue("gray.100", "gray.900"),
           color: useColorModeValue("gray.900", "gray.200"),
         }}
         role="group"
+        fontSize={"16px"}
         fontWeight="semibold"
         onClick={() => router.push(props.link)}
         transition=".15s ease"
         {...rest}
       >
-        {icon && <Icon mx="2" boxSize="4" as={icon} />}
+        {icon && <Icon mx="2" boxSize="4" as={icon} fontSize={"20px"} />}
         {children}
       </Flex>
     );
@@ -52,6 +61,7 @@ export default function SidebarContents(props: SidebarContentProps) {
   const SidebarContent = (props: any) => (
     <Box
       as="nav"
+      shadow={"xl"}
       pos="fixed"
       top="0"
       left="0"
@@ -60,23 +70,19 @@ export default function SidebarContents(props: SidebarContentProps) {
       pb="10"
       overflowX="hidden"
       overflowY="auto"
-      bg={useColorModeValue("white", "gray.800")}
-      borderColor={useColorModeValue("inherit", "gray.700")}
+      bg="#12B2B3"
+      borderColor="blackAlpha.300"
       borderRightWidth="1px"
       w="60"
       {...props}
     >
-      <Flex px="4" py="5" align="center">
+      <VStack px="4" py="5" align="center">
         {/* <Logo /> */}
-        <Text
-          fontSize="2xl"
-          ml="2"
-          color={useColorModeValue("brand.500", "white")}
-          fontWeight="semibold"
-        >
-          Sistem Cerdas
+        <Text fontSize="2xl" ml="2" color={"gray.50"} fontWeight="bold">
+          SISTEM CERDAS
         </Text>
-      </Flex>
+        <Divider />
+      </VStack>
       <Flex
         direction="column"
         as="nav"
@@ -87,9 +93,19 @@ export default function SidebarContents(props: SidebarContentProps) {
         <NavItem icon={FiHome} link="/penduduk">
           Penduduk
         </NavItem>
-        <NavItem icon={FiPlus} link="/perhitungan">
-          Perhitungan
+        <NavItem icon={FiClipboard} link="/kalkulasi">
+          Hasil Perhitungan
         </NavItem>
+      </Flex>
+      <Flex pos={"absolute"} bottom={5} p={4}>
+        <Button
+          w={200}
+          onClick={() => {
+            auth.signOut();
+          }}
+        >
+          Logout
+        </Button>
       </Flex>
     </Box>
   );
@@ -118,10 +134,12 @@ export default function SidebarContents(props: SidebarContentProps) {
           justify="space-between"
           w="full"
           px="4"
+          py={8}
           bg={useColorModeValue("white", "gray.800")}
           borderBottomWidth="1px"
           borderColor={useColorModeValue("inherit", "gray.700")}
           h="14"
+          shadow={"lg"}
         >
           <IconButton
             aria-label="Menu"
@@ -130,6 +148,11 @@ export default function SidebarContents(props: SidebarContentProps) {
             icon={<FiMenu />}
             size="sm"
           />
+          <Spacer />
+          <HStack>
+            <Text color="black">{auth.currentUser?.email}</Text>
+            <Avatar name={String(auth.currentUser?.displayName)} />
+          </HStack>
         </Flex>
 
         <Box as="main" p="4">

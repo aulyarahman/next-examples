@@ -66,9 +66,6 @@ const Penduduk = () => {
         >
           Tambah Penduduk
         </Button>
-        <Button colorScheme={"red"} onClick={() => router.push("/pdf")}>
-          Lihat Kalkulasi
-        </Button>
       </HStack>
       <Table variant="striped" size={"sm"} mt={5}>
         <Thead>

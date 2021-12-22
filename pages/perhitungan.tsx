@@ -44,6 +44,11 @@ const Perhitungan = () => {
 
   const handleClick = async () => {
     setLoadFetch(true);
+    if (state.nik === "") {
+      setLoadFetch(false);
+      toast({ description: "Masukkan Nik Terlebih Dahulu!", status: "error" });
+      return;
+    }
     await db
       .doc(`data-penduduk/${state.nik}`)
       .get()

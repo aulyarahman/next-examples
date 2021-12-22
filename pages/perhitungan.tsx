@@ -142,7 +142,7 @@ const Perhitungan = () => {
       const num1 = 60 - UMUR;
       const num2 = 60 - 50;
       const hasil = num1 / num2;
-      TUA = 1;
+      TUA = hasil;
     }
 
     // Lansia

@@ -1,3 +1,4 @@
+import { Search2Icon } from "@chakra-ui/icons";
 import {
   Container,
   Input,
@@ -7,6 +8,7 @@ import {
   InputRightElement,
   useToast,
   HStack,
+  IconButton,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { InputWihtText } from "../components/InputText";
@@ -362,14 +364,17 @@ const Perhitungan = () => {
           }
         />
         <InputRightElement width="4.5rem">
-          <Button
+          <IconButton
             h="1.75rem"
+            w={"3rem"}
             size="sm"
+            borderWidth={"1.5px"}
+            borderColor={"black"}
             onClick={handleClick}
             isLoading={loadFetch}
-          >
-            Cari
-          </Button>
+            aria-label="Search database"
+            icon={<Search2Icon />}
+          />
         </InputRightElement>
       </InputGroup>
       <InputWihtText
@@ -416,7 +421,7 @@ const Perhitungan = () => {
           onClick={onSave}
           isLoading={loading}
         >
-          Seleksi
+          Analisis
         </Button>
       </HStack>
     </Container>

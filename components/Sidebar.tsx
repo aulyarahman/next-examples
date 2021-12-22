@@ -94,7 +94,7 @@ export default function SidebarContents(props: SidebarContentProps) {
           Penduduk
         </NavItem>
         <NavItem icon={FiClipboard} link="/kalkulasi">
-          Hasil Perhitungan
+          Analisis Data
         </NavItem>
       </Flex>
       <Flex pos={"absolute"} bottom={5} p={4}>

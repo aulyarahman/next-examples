@@ -13,6 +13,9 @@ const Tambahpenduduk = () => {
     jumlah_pendapatan: "",
     jumlah_tanggungan: "",
     bantuan: "-",
+    umur_kepala_keluarga: { muda: 0, tua: 0, lansia: 0 },
+    pendapatan: { rendah: 0, sedang: 0, tinggi: 0 },
+    jumlah_anggota_keluarga: { sedikit: 0, banyak: 0 },
   });
 
   const onSubmit = async () => {

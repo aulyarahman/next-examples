@@ -41,7 +41,7 @@ const Penduduk = () => {
         leftIcon={<FiGrid />}
         onClick={() => router.push("/perhitungan")}
       >
-        Seleksi
+        Analisis
       </Button>
       <Table variant="striped" size={"sm"} mt={5}>
         <Thead>

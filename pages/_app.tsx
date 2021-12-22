@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import Login from "./login";
 import { auth } from "../config/firebase";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const SidebarContents = dynamic(() => import("../components/Sidebar"), {
   ssr: false,
@@ -12,14 +12,6 @@ const SidebarContents = dynamic(() => import("../components/Sidebar"), {
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [user, loading, error] = useAuthState(auth);
-
-  if (router.pathname.startsWith("/login")) {
-    return (
-      <ChakraProvider resetCSS>
-        <Login />
-      </ChakraProvider>
-    );
-  }
 
   if (loading) return <span>Loading...</span>;
 
@@ -36,5 +28,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       </div>
     );
   }
+
+  return (
+    <ChakraProvider resetCSS>
+      <Login />
+    </ChakraProvider>
+  );
 }
 export default MyApp;

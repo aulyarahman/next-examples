@@ -31,6 +31,8 @@ const Perhitungan = () => {
   const [sedikit, setSedikit] = useState(0);
   const [banyak, setBanyak] = useState(0);
 
+  const [finish, setFinish] = useState(true);
+
   const [state, setState] = useState({
     nik: "",
     nama: "",
@@ -39,12 +41,6 @@ const Perhitungan = () => {
     jumlah_tanggungan: "",
     bantuan: "",
   });
-
-  // useEffect(() => {
-  //   console.log(`Muda - ${muda}, Tua - ${tua}, Lansia - ${lansia}`);
-  //   console.log(`Rendah - ${muda}, Menengah - ${tua}, Tinggi - ${lansia}`);
-  //   console.log(`Sedikit - ${sedikit}, Banyak - ${banyak}`);
-  // }, [tua, lansia, muda, rendah, sedang, tinggi, sedikit, banyak]);
 
   const handleClick = async () => {
     setLoadFetch(true);
@@ -64,115 +60,145 @@ const Perhitungan = () => {
   const HitungPendapatan = async () => {
     const PENDAPATAN = Number(state.jumlah_pendapatan);
 
+    let RENDAH = 0;
+    let SEDANG = 0;
+    let TINGGI = 0;
+
     // RENDAH
     if (PENDAPATAN >= 3000000) {
-      setRendah(0);
+      // setRendah(0);
+      RENDAH = 0;
     } else if (PENDAPATAN >= 2000000 && PENDAPATAN <= 3000000) {
       const num1 = 3000000 - PENDAPATAN;
       const num2 = 3000000 - 2000000;
       const hasil = num1 / num2;
-      setRendah(hasil);
-    } else if (PENDAPATAN <= 2000000) setRendah(1);
+      // setRendah(hasil);
+      RENDAH = hasil;
+    } else if (PENDAPATAN <= 2000000) RENDAH = 1;
 
     // MENENGAH
     if (PENDAPATAN <= 2000000 || PENDAPATAN >= 4000000) {
-      setSedang(0);
-    } else if (PENDAPATAN >= 2000000 && PENDAPATAN >= 4000000) {
+      SEDANG = 0;
+    } else if (PENDAPATAN >= 2000000 && PENDAPATAN <= 3000000) {
       const num1 = PENDAPATAN - 2000000;
       const num2 = 3000000 - 2000000;
       const hasil = num1 / num2;
       setSedang(hasil);
+      SEDANG = hasil;
     } else if (PENDAPATAN >= 3000000 && PENDAPATAN <= 4000000) {
       const num1 = 4000000 - PENDAPATAN;
       const num2 = 4000000 - 3000000;
       const hasil = num1 / num2;
       setSedang(hasil);
+      SEDANG = hasil;
     }
 
     // TINGGI
-
     if (PENDAPATAN <= 3000000) setTinggi(0);
-    if (PENDAPATAN >= 3000000 && PENDAPATAN <= 4000000) {
+    else if (PENDAPATAN >= 3000000 && PENDAPATAN <= 4000000) {
       const num1 = PENDAPATAN - 3000000;
       const num2 = 4000000 - 3000000;
       const hasil = num1 / num2;
       setTinggi(hasil);
-    }
-    if (PENDAPATAN >= 4000000) setTinggi(1);
+      TINGGI = hasil;
+    } else if (PENDAPATAN >= 4000000) TINGGI = 1;
+
+    return {
+      SEDANG,
+      TINGGI,
+      RENDAH,
+    };
   };
 
-  const Count = async () => {
+  const UmurCount = async () => {
     const UMUR = Number(state.umur);
+
+    let MUDA = 0;
+    let TUA = 0;
+    let LANSIA = 0;
     // Muda
     if (UMUR >= 50) {
-      setMuda(0);
+      MUDA = 0;
     } else if (UMUR >= 40 && UMUR <= 50) {
       const num1 = 50 - UMUR;
       const num2 = 50 - 40;
       const hasil = num1 / num2;
-      setMuda(hasil);
+      MUDA = hasil;
     } else if (UMUR <= 40) {
-      setMuda(1);
+      MUDA = 1;
     }
 
     // Tua
 
     if (UMUR <= 40 || UMUR >= 60) {
-      setTua(0);
+      TUA = 0;
     } else if (UMUR >= 40 && UMUR <= 50) {
       const num1 = UMUR - 40;
       const num2 = 50 - 40;
       const hasil = num1 / num2;
 
-      setTua(hasil);
+      TUA = hasil;
     } else if (UMUR >= 50 && UMUR <= 60) {
       const num1 = 60 - UMUR;
       const num2 = 60 - 50;
       const hasil = num1 / num2;
-      setTua(hasil);
+      TUA = 1;
     }
 
     // Lansia
 
     if (UMUR <= 50) {
-      setLansia(0);
+      LANSIA = 0;
     } else if (UMUR >= 50 && UMUR <= 60) {
       const num1 = UMUR - 50;
       const num2 = 60 - 50;
       const hasil = num1 / num2;
-      setLansia(hasil);
+      LANSIA = hasil;
     } else if (UMUR >= 60) {
-      setLansia(1);
+      LANSIA = 1;
     }
+
+    return {
+      MUDA,
+      TUA,
+      LANSIA,
+    };
   };
 
   const JumlahTanggungan = async () => {
     const TANGGUNGAN = Number(state.jumlah_tanggungan);
 
+    let SEDIKIT = 0;
+    let BANYAK = 0;
+
     if (TANGGUNGAN >= 6) {
-      setSedikit(0);
+      SEDIKIT = 0;
     } else if (TANGGUNGAN >= 4 && TANGGUNGAN <= 6) {
       const num1 = 6 - TANGGUNGAN;
       const num2 = 6 - 4;
       const hasil = num1 / num2;
-      setSedikit(hasil);
+      SEDIKIT = hasil;
     }
-    if (TANGGUNGAN <= 4) setSedikit(1);
+    if (TANGGUNGAN <= 4) SEDIKIT = 1;
 
     // BANYAK;
-    if (TANGGUNGAN <= 4) setBanyak(0);
+    if (TANGGUNGAN <= 4) BANYAK = 0;
     if (TANGGUNGAN >= 4 && TANGGUNGAN <= 6) {
       const num1 = TANGGUNGAN - 4;
       const num2 = 6 - 4;
       const hasil = num1 / num2;
-      setBanyak(hasil);
+      BANYAK = hasil;
     }
-    if (TANGGUNGAN >= 6) setBanyak(1);
+    if (TANGGUNGAN >= 6) BANYAK = 1;
+
+    return {
+      SEDIKIT,
+      BANYAK,
+    };
   };
 
-  const COUNTING = async () => {
-    setLoadHitung(true);
-    await Count();
+  const counts = async () => {
+    await UmurCount();
     await HitungPendapatan();
     await JumlahTanggungan();
     if (muda > 0 && rendah > 0 && banyak > 0) {
@@ -202,19 +228,46 @@ const Perhitungan = () => {
     } else {
       setState((pre) => ({ ...pre, bantuan: "Tidak Dapat Bantuan" }));
     }
-    setLoadHitung(false);
   };
 
   const onSave = async () => {
     setLoading(true);
+    if (state.nik === "") {
+      toast({ description: "Masukkan Nik Terlebih Dahulu!", status: "error" });
+      return;
+    }
+    // await promise;
+    const promise = new Promise(async (resolve, reject) => {
+      for (let i = 0; i < 5; i++) {
+        // do something
+        counts();
+        if (i == 4) {
+          resolve(i);
+        }
+      }
+    });
+
+    await promise;
+
     await db
       .doc(`data-penduduk/${state.nik}`)
       .update({
         ...state,
         bantuan: state.bantuan,
-        umur_kepala_keluarga: { muda, tua, lansia },
-        pendapatan: { rendah, sedang, tinggi },
-        jumlah_anggota_keluarga: { sedikit, banyak },
+        umur_kepala_keluarga: {
+          muda: (await UmurCount()).MUDA,
+          tua: (await UmurCount()).TUA,
+          lansia: (await UmurCount()).LANSIA,
+        },
+        pendapatan: {
+          rendah: (await HitungPendapatan()).RENDAH,
+          sedang: (await HitungPendapatan()).SEDANG,
+          tinggi: (await HitungPendapatan()).TINGGI,
+        },
+        jumlah_anggota_keluarga: {
+          sedikit: (await JumlahTanggungan()).SEDIKIT,
+          banyak: (await JumlahTanggungan()).BANYAK,
+        },
       })
       .then(() => {
         toast({ description: "Berhasil Kalkulasi", status: "success" });
@@ -279,14 +332,14 @@ const Perhitungan = () => {
       />
 
       <HStack spacing={2} mt={5}>
-        <Button
+        {/* <Button
           colorScheme={"red"}
           color={"white"}
           onClick={COUNTING}
           isLoading={loadHitung}
         >
           Hitung
-        </Button>
+        </Button> */}
         <Button
           colorScheme={"green"}
           color={"white"}

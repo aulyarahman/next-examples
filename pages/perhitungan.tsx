@@ -233,6 +233,7 @@ const Perhitungan = () => {
   const onSave = async () => {
     setLoading(true);
     if (state.nik === "") {
+      setLoading(false);
       toast({ description: "Masukkan Nik Terlebih Dahulu!", status: "error" });
       return;
     }
